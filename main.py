@@ -1,6 +1,7 @@
 import ast
 import os
 
+#getDepth function implement a method to output a list of layers of all the If/For/while... statements at
 def getDepth(root, depth, list, parent=True):
     for child in ast.iter_child_nodes(root):
         if isinstance(child, ast.If) or isinstance(child, ast.While) or isinstance(child, ast.For) or isinstance(child, ast.AsyncFor) or isinstance(child,ast.With)  or isinstance(child, ast.AsyncWith):
@@ -13,6 +14,7 @@ def getDepth(root, depth, list, parent=True):
             getDepth(child, depth,list, parent=False)
             depth = depth - 1
 
+#class collectName is used to traverse all the nodes, and collect all associated identifier
 class collectName(ast.NodeVisitor):
    def visit_Module(self, node):
      self.names = set()
